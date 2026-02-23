@@ -1,0 +1,43 @@
+---
+description: Dreierschnapsen card game project conventions and domain knowledge
+alwaysApply: true
+---
+
+# Dreierschnapsen Project Rules
+
+## Architecture
+
+- Three-crate Cargo workspace: `schnapsen-model`, `schnapsen-engine`, `schnapsen-cli`
+- `schnapsen-model` is the core dependency — never import engine/cli types into it
+- Game state is immutable-style: `GameState::apply_action()` mutates in place but validates first
+
+## Domain Terminology
+
+Use consistent naming for game concepts:
+
+| German | English (code) | Description |
+|--------|----------------|-------------|
+| Rufer | `rufer` | Caller — determines trump, sits left of dealer |
+| Geber | `geber` | Dealer |
+| Trumpf/Atout | `trump` | Trump suit |
+| Farb- und Stichzwang | suit+trump obligation | Must follow suit, must beat, must trump |
+| Zwanziger | `Marriage` (non-trump) | King+Queen of same suit = 20 pts |
+| Vierziger | `Marriage` (trump) | King+Queen of trump suit = 40 pts |
+| Bummerl | `bummerl` | Loss marker in match scoring |
+| Spritzen | `SpritzenLevel` | Doubling mechanism (×2, ×4, ×8) |
+| Talon | `talon` | 2 face-down cards in the middle |
+
+## Card Model
+
+- 4 suits: Hearts, Diamonds, Spades, Clubs
+- 5 ranks per suit: Ace(11), Ten(10), King(4), Queen(3), Jack(2)
+- 20 cards total, 120 points total in deck
+- Multiple rank orderings exist (standard, ace-low, ten-low, king-low)
+
+## Code Conventions
+
+- Use `PlayerId` (usize 0..3) for player identification
+- `Card::new(suit, rank)` — always construct cards this way
+- `valid_plays()` and `trick_winner()` are pure functions in `types.rs`
+- `GameState` is the single source of truth for a hand's state
+- All game type metadata (points, trump, goal, ordering) lives on `GameType` enum methods

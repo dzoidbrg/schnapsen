@@ -1,0 +1,37 @@
+---
+description: Rust coding patterns for this project
+globs: "**/*.rs"
+alwaysApply: false
+---
+
+# Rust Patterns
+
+## Error Handling
+
+- `GameState::apply_action()` returns `Result<(), String>` for invalid moves
+- Engine code uses `.expect()` for programmer errors (invalid AI moves)
+- CLI uses `Box<dyn Error>` for I/O and terminal errors
+
+## Testing
+
+- Use helper functions like `fn c(suit: Suit, rank: Rank) -> Card` in test modules
+- Test trick resolution with explicit card vectors
+- Use `rand::thread_rng()` for randomized tests
+- Engine tests should verify full games complete without panics
+
+## Enums Over Booleans
+
+```rust
+// Prefer this
+enum GameGoal { Reach66, TakeNoTricks, TakeAllTricks }
+
+// Over this
+struct GameType { must_reach_66: bool, must_take_all: bool }
+```
+
+## State Machine
+
+Game phases follow a strict order:
+`CallingTrump → Bidding → TalonDecision → Discarding → Playing → Finished`
+
+Match on `Phase` variants to determine valid actions.
