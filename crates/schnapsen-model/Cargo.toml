@@ -1,0 +1,9 @@
+[package]
+name = "schnapsen-model"
+description = "Core data structures and rules for Dreierschnapsen"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+rand = { workspace = true }

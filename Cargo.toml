@@ -1,0 +1,18 @@
+[workspace]
+members = [
+    "crates/schnapsen-model",
+    "crates/schnapsen-engine",
+    "crates/schnapsen-cli",
+]
+resolver = "2"
+
+[workspace.package]
+version = "0.1.0"
+edition = "2021"
+license = "MIT"
+repository = "https://github.com/your-org/schnapsen"
+
+[workspace.dependencies]
+schnapsen-model = { path = "crates/schnapsen-model" }
+schnapsen-engine = { path = "crates/schnapsen-engine" }
+rand = "0.8"
