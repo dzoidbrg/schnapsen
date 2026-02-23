@@ -1,0 +1,25 @@
+---
+description: Preserve Schnapsen workspace layering and rule modeling
+alwaysApply: true
+---
+
+# Schnapsen Workspace Standards
+
+- Keep crate responsibilities strict:
+  - `schnapsen-model`: pure data types and metadata (no UI logic).
+  - `schnapsen-engine`: legal moves + state transitions over model types.
+  - `schnapsen-cli`: rendering and input handling only.
+- Add new game rules as model metadata first (`GameVariantSpec`, `Ruleset`) before implementing engine behavior.
+- Do not duplicate trick-resolution logic in CLI; call engine/model helpers.
+- For new move types, update:
+  1. `GameMove` in model,
+  2. legal move generation in engine,
+  3. CLI interaction mapping.
+- Require tests for every new rule constraint.
+
+## Example
+
+```rust
+// Good: UI asks engine for legal moves.
+let legal = legal_cards_for_player(&state, human_player);
+```

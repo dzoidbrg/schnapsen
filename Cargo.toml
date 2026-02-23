@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "schnapsen-model",
+    "schnapsen-engine",
+    "schnapsen-cli",
+]
+resolver = "2"
