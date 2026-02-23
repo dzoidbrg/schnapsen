@@ -1,0 +1,26 @@
+---
+description: Rust standards for the Dreierschnapsen project
+globs: **/*.rs
+alwaysApply: false
+---
+
+# Schnapsen Rust Conventions
+
+## Crate Structure
+- **schnapsen-model**: Pure data types only—no game logic, no I/O.
+- **schnapsen-engine**: Game logic, move validation, and AI. Depends on schnapsen-model.
+- **schnapsen-cli**: TUI using ratatui. Depends on model and engine.
+
+## Code Style
+- Use `cargo fmt` and `cargo clippy` before committing.
+- Prefer `#[must_use]` for functions that return values that should be used.
+- Add `#![warn(missing_docs)]` in lib.rs and document public items.
+
+## Testing
+- Unit tests in each module with `#[cfg(test)] mod tests`.
+- Test deck invariants (20 cards, unique, correct point sum).
+- Test move validation for lead, follow-suit, and trump.
+
+## Game Model
+- Card ordering varies by game type: Normal, AssLowest, ZehnerLowest, KoenigLowest.
+- Always validate moves via `valid_moves()` before applying.
