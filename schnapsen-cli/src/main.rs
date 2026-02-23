@@ -183,7 +183,7 @@ impl App {
 }
 
 fn draw_ui(frame: &mut Frame<'_>, app: &App) {
-    let root = frame.area();
+    let root = frame.size();
     let vertical = Layout::default()
         .direction(Direction::Vertical)
         .constraints([
