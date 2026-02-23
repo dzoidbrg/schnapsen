@@ -691,11 +691,10 @@ impl GameState {
     }
 }
 
-pub const fn marriage_value(suit: Suit, trump: Option<Suit>) -> u16 {
-    if Some(suit) == trump {
-        40
-    } else {
-        20
+pub fn marriage_value(suit: Suit, trump: Option<Suit>) -> u16 {
+    match trump {
+        Some(trump_suit) if trump_suit == suit => 40,
+        _ => 20,
     }
 }
 
