@@ -1,0 +1,28 @@
+---
+description: Dreierschnapsen card game project conventions
+globs: "**/*.rs"
+alwaysApply: false
+---
+
+# Dreierschnapsen Project Rules
+
+## Architecture
+- Workspace has 3 crates: `schnapsen-model`, `schnapsen-engine`, `schnapsen-cli`
+- `schnapsen-model` is the foundation: pure data structures, no game logic
+- `schnapsen-engine` depends on model: validation, state transitions, AI
+- `schnapsen-cli` depends on both: ratatui TUI, no game logic here
+
+## Domain Terminology (German → Code)
+- Farbe → `Suit`, Herz/Karo/Pik/Kreuz → `Hearts/Diamonds/Spades/Clubs`
+- Ass/Zehner/König/Ober/Unter → `Ace/Ten/King/Queen/Jack`
+- Rufer → `Caller`, Geber → `Dealer`
+- Trumpf → `trump`, Stich → `Trick`, Talon → `talon`
+- Zwanziger/Vierziger → `Marriage`/`RoyalMarriage` (20/40 points)
+- Spritzen → `Double`, Zurückgespritzt → `Redouble`
+
+## Card Values
+- Ace=11, Ten=10, King=4, Queen=3, Jack=2 (total 120 in deck)
+
+## Testing
+- Unit tests in each module file via `#[cfg(test)]`
+- Use descriptive test names reflecting game scenarios

@@ -1,0 +1,10 @@
+[package]
+name = "schnapsen-model"
+description = "Data structures and game rules for Dreierschnapsen"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+rand = "0.8"
+strum = { version = "0.26", features = ["derive"] }
