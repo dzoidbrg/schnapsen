@@ -54,7 +54,7 @@ impl Spritzen {
         }
     }
 
-    pub const fn apply(self, base_points: u8) -> u32 {
+    pub fn apply(self, base_points: u8) -> u32 {
         self.multiplier() * u32::from(base_points)
     }
 }
