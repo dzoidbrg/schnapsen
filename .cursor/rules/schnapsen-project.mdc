@@ -1,0 +1,30 @@
+---
+description: Dreierschnapsen Rust workspace standards
+alwaysApply: true
+---
+
+# Dreierschnapsen Project Rule
+
+## Workspace boundaries
+
+- Keep core game data types in `crates/schnapsen-model`.
+- Keep gameplay logic (legal moves, turn progression, AI helpers) in `crates/schnapsen-engine`.
+- Keep terminal rendering and input handling in `crates/schnapsen-cli`.
+- Do not put ratatui or terminal dependencies into model or engine crates.
+
+## Modeling expectations
+
+- New rule variants must be represented with typed enums/structs, not loose strings.
+- Prefer explicit metadata functions on declarations (points, trump policy, rank order).
+- Keep legality helpers deterministic and side-effect free whenever possible.
+
+## Testing requirements
+
+- Add unit tests for every new rule/ordering/scoring edge case.
+- Engine tests must verify selected/random moves are always legal.
+- Keep tests in the same crate as the behavior they validate.
+
+## Documentation requirements
+
+- Update `README.md` when behavior or controls change.
+- Update docs in `docs/` when adding declarations or changing scoring semantics.

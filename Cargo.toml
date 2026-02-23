@@ -1,0 +1,7 @@
+[workspace]
+members = [
+    "crates/schnapsen-model",
+    "crates/schnapsen-engine",
+    "crates/schnapsen-cli",
+]
+resolver = "2"
