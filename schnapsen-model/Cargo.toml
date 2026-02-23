@@ -1,0 +1,21 @@
+[package]
+name = "schnapsen-model"
+version = "0.1.0"
+edition = "2021"
+description = "Data structures representing Dreierschnapsen (three-player Schnapsen) card game"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+documentation = "https://docs.rs/schnapsen-model"
+
+[dependencies]
+serde = { version = "1", features = ["derive"], optional = true }
+thiserror = "1"
+rand = { version = "0.8", optional = true }
+
+[features]
+default = ["serde"]
+serialization = ["serde"]
+random = ["rand"]
+
+[dev-dependencies]
+rand = "0.8"
