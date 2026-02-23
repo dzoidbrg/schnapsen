@@ -1,0 +1,16 @@
+[package]
+name = "schnapsen-cli"
+version = "0.1.0"
+edition = "2021"
+description = "Terminal UI for playing Dreierschnapsen"
+
+[[bin]]
+name = "schnapsen"
+path = "src/main.rs"
+
+[dependencies]
+schnapsen-model = { path = "../schnapsen-model" }
+schnapsen-engine = { path = "../schnapsen-engine" }
+ratatui = "0.26"
+crossterm = "0.27"
+rand = "0.8"
