@@ -225,13 +225,14 @@ fn apply_play_card(state: &mut GameState, player: PlayerId, card: Card) -> Resul
     )
     .ok_or(EngineError::TrickResolutionFailed)?;
 
-    for (_, won_card) in &state.current_trick.cards {
+    let trick_cards = state.current_trick.cards.clone();
+    for (_, won_card) in &trick_cards {
         state.player_mut(winner).won_cards.push(*won_card);
     }
     state.completed_tricks.push(ResolvedTrick {
         leader: state.current_trick.leader,
         winner,
-        cards: state.current_trick.cards.clone(),
+        cards: trick_cards,
     });
     state.current_trick = CurrentTrick::new(winner);
     state.active_player = winner;
