@@ -1,0 +1,12 @@
+[package]
+name = "schnapsen-engine"
+version = "0.1.0"
+edition = "2021"
+description = "Game engine for Dreierschnapsen with move validation and AI"
+license = "GPL-3.0-or-later"
+readme = "README.md"
+
+[dependencies]
+schnapsen-model = { path = "../schnapsen-model" }
+rand = "0.8"
+thiserror = "1"
