@@ -1,0 +1,39 @@
+---
+description: Dreierschnapsen project structure and Rust conventions
+globs: **/*.rs
+alwaysApply: false
+---
+
+# Schnapsen Project Conventions
+
+## Crate Structure
+
+- **schnapsen-model**: Pure data structures. No I/O, minimal dependencies. Types: `Card`, `Suit`, `Rank`, `GameState`, `GameType`, `Player`, `Trick`.
+- **schnapsen-engine**: Game logic (validation, apply_move, AI). Depends on schnapsen-model.
+- **schnapsen-cli**: TUI using ratatui. Depends on model + engine.
+
+## Game Types
+
+Game types from German rules use `GameType` enum. Card order varies per game:
+- Normal/Bauernschnapser: Ass > Zehner > König > Ober > Unter
+- Assenbettler/Zehnergang: Ass lowest
+- Königsgang: Zehner lowest
+- Damengang: König lowest
+
+Use `Rank::order_in_game(game_type)` for comparisons.
+
+## Card and Move Validation
+
+- Use `schnapsen_engine::get_valid_moves(state)` to get legal plays
+- `apply_move` enforces Farbzwang (follow suit) and Stichzwang (trump when can't follow)
+
+## Testing
+
+- Unit tests in each crate under `#[cfg(test)] mod tests`
+- Model tests: card ordering, trick scoring, deal distribution
+- Engine tests: valid move generation
+
+## Naming
+
+- German game terms in docs (Rufer, Talon, Stich, etc.)
+- Rust identifiers use PascalCase for types, snake_case for functions
