@@ -1,0 +1,10 @@
+[package]
+name = "schnapsen-engine"
+description = "Game engine and move validation for Dreierschnapsen"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+schnapsen-model = { path = "../schnapsen-model" }
+rand = "0.8"

@@ -1,0 +1,13 @@
+[package]
+name = "schnapsen-cli"
+description = "Terminal UI for Dreierschnapsen using ratatui"
+version.workspace = true
+edition.workspace = true
+license.workspace = true
+
+[dependencies]
+schnapsen-model = { path = "../schnapsen-model" }
+schnapsen-engine = { path = "../schnapsen-engine" }
+ratatui = "0.29"
+crossterm = "0.28"
+rand = "0.8"
